@@ -58,7 +58,7 @@ class TaskPage extends Component {
 
         let IsnotAvaildraw = setInterval(() => {
             if (this.state.getAlltasks.length == 0) {
-                this.state.GetAllTask();
+                this.props.GetAllTask();
                 clearInterval(IsnotAvaildraw)
             }
         }, 300);
