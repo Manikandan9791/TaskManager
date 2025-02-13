@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes, Switch } from "react-router-dom"
+import { history } from './helpers/history';
+import TaskPage from "./components/TaskPage";
+import Login from "./components/User/login";
+import ErrorBoundary from "./components/Error";
+
+
+
 
 function App() {
+  console.log("REACT_MODE ", process.env.REACT_APP_MODE)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary>
+      <Router history={history} basename="">
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/taskpage" component={TaskPage} />
+        </Switch>
+      </Router>
+    </ErrorBoundary>
   );
 }
 

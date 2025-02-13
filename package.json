@@ -1,20 +1,37 @@
 {
-  "name": "taskmanager",
+  "name": "peetshaapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-brands-svg-icons": "^6.4.2",
+    "@fortawesome/free-regular-svg-icons": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "babel-plugin-macros": "^3.1.0",
+    "env-cmd": "^10.1.0",
+    "jquery": "^3.7.1",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.8.0",
+    "react-dom": "^18.2.0",
+    "react-loading": "^2.0.3",
+    "react-redux": "^8.1.2",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^1.1.2",
-    "zcatalyst-cli-plugin-react": "^0.0.4"
+    "react-toastify": "^11.0.3",
+    "redux-thunk": "^2.4.2",
+    "validator": "^13.11.0",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "env-cmd -f .env.development react-scripts start",
+    "build:staging": "env-cmd -f .env.staging react-scripts build",
+    "build:production": "env-cmd -f .env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -35,5 +52,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "proxy": "http://127.0.0.1:8000",
+  "devDependencies": {
+    "@types/jquery": "^3.5.20",
+    "zcatalyst-cli-plugin-react": "^0.0.4"
   }
 }
