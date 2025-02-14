@@ -45,7 +45,7 @@ export default class Login extends Component {
             // alert('5678')
         }
         else if (IsValid == true) {
-            if (this.state.email == 'kmkandan1999@gmail.com' && this.state.password == '123456') {
+            if (this.state.email == 'kmkandan1998@gmail.com' && this.state.password == '123456') {
                 let AuthObj = { Usermail: this.state.email, password: this.state.password }
                 localStorage.setItem('login_credentials', JSON.stringify(AuthObj));
                 history.push('/TaskPage')
