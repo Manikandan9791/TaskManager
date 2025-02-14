@@ -21,8 +21,8 @@ export default class Login extends Component {
 
 
     HandleChange = (e) => {
-        this.setState({passwordFlag:false})
-        this.setState({EmailFlag:false})
+        this.setState({ passwordFlag: false })
+        this.setState({ EmailFlag: false })
         let value = e.target.value;
         let name = e.target.name;
         this.setState({ [name]: value })
@@ -33,21 +33,25 @@ export default class Login extends Component {
         e.preventDefault()
         let IsValid = true;
         if (this.state.password.length < 6) {
-            this.setState({passwordFlag:true})
+            this.setState({ passwordFlag: true })
             IsValid = false;
             // this.state.passwordFlag = true;
             // alert('1234');
         }
         if (this.isValidEmail(this.state.email) == false) {
             IsValid = false;
-            this.setState({EmailFlag:true})
+            this.setState({ EmailFlag: true })
             // this.state.EmailFlag = true;
             // alert('5678')
         }
-        else if(IsValid == true){
-            let AuthObj = {Usermail:this.state.email,password : this.state.password}
-            localStorage.setItem('login_credentials',JSON.stringify(AuthObj));
-            history.push('/TaskPage')
+        else if (IsValid == true) {
+            if (this.state.email == 'kmkandan1999@gmail.com' && this.state.password == '123456') {
+                let AuthObj = { Usermail: this.state.email, password: this.state.password }
+                localStorage.setItem('login_credentials', JSON.stringify(AuthObj));
+                history.push('/TaskPage')
+            }else{
+                alert('Please Enter Correct UserName Password.')
+            }
         }
     }
 
@@ -69,7 +73,7 @@ export default class Login extends Component {
                                 </div>
                                 {this.state.passwordFlag && <p className='red'>PassWord Should be More Then 6 Digits</p>}
                                 <div class="form-link">
-                                    <button type="submit"  class="btn btn-primary btn-lg btn-block">Login</button>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
                                 </div>
                                 <div class="form-link">
                                     <a href="#" class="forgot-pass">Forgot password?</a>

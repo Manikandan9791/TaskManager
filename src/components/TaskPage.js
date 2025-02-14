@@ -43,6 +43,9 @@ class TaskPage extends Component {
     }
 
     componentDidMount() {
+        if (!JSON.parse(localStorage.getItem('login_credentials'))) {
+            history.push('/')
+        }
         setTimeout(() => {
             this.LoadgetAlltasks();
         }, 400);
