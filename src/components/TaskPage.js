@@ -128,7 +128,6 @@ class TaskPage extends Component {
     }
 
     storefilter = (e) => {
-        debugger
         let name = e.target.name;
         let value = e.target.value;
         this.setState({ [name]: value });
@@ -142,7 +141,6 @@ class TaskPage extends Component {
     LoadgetAlltasks = () => {
         if (this.state.getAlltasks && this.state.getAlltasks.length > 0) {
             let Store = this.state.getAlltasks;
-            debugger
             // Search Filter
             Store = Store.filter((fobj) => fobj.title.toLowerCase().includes(this.state.filtertext.toLowerCase()))
             if (this.state.pending.length > 0 != this.state.Finished.length > 0) {
@@ -222,6 +220,7 @@ class TaskPage extends Component {
 
 
     SumbitTask = () => {
+        debugger
         this.setState({ IsTitle: false })
         this.setState({ Isdescriptcion: false })
         this.setState({ IsTaskLevel: false })
@@ -244,8 +243,19 @@ class TaskPage extends Component {
             console.log(date)
             if (this.state.IsEditFlag == false) {
                 let _alltasks = this.props.getAlltasks;
-                let addid = this.state.getAlltasks.length;
-                let NewObj = { completed: false, userId: 7, id: addid, title: this.state.Title, description: this.state.description, date: date, priority: this.state.TaskLevel }
+                let addid = this.state.getAlltasks.length + 1;
+                let uniqueDraws = this.state.getAlltasks.filter((value, index, self) =>
+                    index === self.findIndex((item) => item.userId === value.userId)
+                );
+                uniqueDraws = uniqueDraws.sort((a, b) => a.userId - b.userId)
+                let getlastobj = uniqueDraws[uniqueDraws.length - 1];
+                let getthatlen =this.state.getAlltasks.filter(a => a.userId == getlastobj.userId).length
+                let adduserid = getlastobj.userId + 1;
+                if (getthatlen < 20) {
+                    adduserid = getlastobj.userId;
+                }
+
+                let NewObj = { completed: false, userId: adduserid, id: addid, title: this.state.Title, description: this.state.description, date: date, priority: this.state.TaskLevel }
                 _alltasks.unshift(NewObj);
                 localStorage.setItem('set_all_tasks', JSON.stringify(_alltasks));
                 this.setState({ rerenderhelpflag: !this.state.rerenderhelpflag });
@@ -311,7 +321,6 @@ class TaskPage extends Component {
     }
 
     Datefilter = (type) => {
-        debugger
         this.setState({ datefilterFormat: type });
         this.state.datefilterFormat = type;
         this.LoadgetAlltasks()
